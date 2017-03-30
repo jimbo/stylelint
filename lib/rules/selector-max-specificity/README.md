@@ -79,3 +79,47 @@ div {}
   }
 }
 ```
+
+## Optional secondary options
+
+### `granular: true | false` (default: `false`)
+
+Limit each component of specificity (`id`, `class`, and `type`) individually, rather than limiting cumulative specificity.
+
+For example, with `"1,2,1"`:
+
+The following patterns are always considered warnings:
+
+```css
+a span {}
+```
+
+```css
+.foo .bar .baz {}
+```
+
+```css
+.foo .bar a:hover {}
+```
+
+```css
+#hello #world .foo {}
+```
+
+The following patterns are *not* considered warnings:
+
+```css
+span {}
+```
+
+```css
+.foo .bar::after {}
+```
+
+```css
+.bar a:hover {}
+```
+
+```css
+#hello .foo {}
+```
